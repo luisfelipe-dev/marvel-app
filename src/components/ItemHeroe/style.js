@@ -25,7 +25,7 @@ export const itemHeroe = styled.div`
       left: 50%;
       top: 50%;
       height: 100%;
-      width: 100%;
+      width: auto;
       -webkit-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);
@@ -86,6 +86,16 @@ export const itemHeroe = styled.div`
     100% {
       -webkit-transform: translateY(-8px);
       transform: translateY(-8px);
+    }
+  }
+
+  @media (min-width: ${C.MD}) {
+    .thumbnail {
+      height: 220px;
+
+      img{
+        height: 100%;
+      }
     }
   }
 
