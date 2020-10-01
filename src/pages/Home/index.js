@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import Header from "../../components/Header";
 import ItemHeroe from "../../components/ItemHeroe";
@@ -6,16 +6,10 @@ import ItemHeroe from "../../components/ItemHeroe";
 import * as Style from "./style";
 import { Container } from "../../styles/Container";
 
-import { basicFetch } from "../../services/Api";
+import { useCharacters } from "../../hooks/useCharacters";
 
 function Home() {
-  const [response, setResponse] = useState(null);
-
-  useEffect(() => {
-    basicFetch().then((res) => {
-      setResponse(res.data);
-    });
-  }, []);
+  const { characters } = useCharacters();
 
   return (
     <>
@@ -24,14 +18,13 @@ function Home() {
       <Style.listHeroes>
         <Container>
           <div className="flex">
-            {response &&
-              response.data.results.map((item, key) => (
-                <ItemHeroe
-                  key={key}
-                  image={`${item.thumbnail.path}.${item.thumbnail.extension}`}
-                  name={item.name}
-                />
-              ))}
+            {characters.map((item, key) => (
+              <ItemHeroe
+                key={key}
+                image={`${item.thumbnail.path}.${item.thumbnail.extension}`}
+                name={item.name}
+              />
+            ))}
           </div>
         </Container>
       </Style.listHeroes>
