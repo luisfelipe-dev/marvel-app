@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Header from "../../components/Header";
 import ItemHeroe from "../../components/ItemHeroe";
+import Pagination from "../../components/Pagination";
 
 import * as Style from "./style";
 import { Container } from "../../styles/Container";
 
-import { useCharacters } from "../../hooks/useCharacters";
+import useCharacters from "../../hooks/useCharacters";
 
 function Home() {
-  const { characters } = useCharacters();
+  const { characters, loadCharacters } = useCharacters();
+
+  // useEffect(() => {
+  //   loadCharacters();
+  // }, [loadCharacters]);
+
 
   return (
     <>
@@ -17,7 +23,7 @@ function Home() {
 
       <Style.listHeroes>
         <Container>
-          <div className="flex">
+          <div className="grid">
             {characters.map((item, key) => (
               <ItemHeroe
                 key={key}
@@ -26,6 +32,8 @@ function Home() {
               />
             ))}
           </div>
+
+          <Pagination />
         </Container>
       </Style.listHeroes>
     </>

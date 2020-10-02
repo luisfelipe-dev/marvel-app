@@ -1,16 +1,15 @@
-import { useState, useEffect } from "react";
-import { basicFetch } from "../../services/Api";
+import {useContext} from 'react';
 
-export function useCharacters() {
-  const [characters, setCharacters] = useState([]);
+import {CharactersContext} from '../context/charactersContext';
 
-  useEffect(() => {
-    basicFetch().then((res) => {
-      setCharacters(res.data.data.results);
-    });
-  }, []);
+const useCharacters = () =>{
+  const context = useContext(CharactersContext);
 
-  return {
-    characters
+  if(!context){
+    throw new Error('useCharacter must be used within an CharactersProvider.')
   }
+
+  return context;
 }
+
+export default useCharacters;

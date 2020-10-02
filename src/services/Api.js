@@ -13,11 +13,12 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-export const basicFetch = async () => {
-  const ts = new Date().getTime();
-  const hash = md5(ts + PRIVATE_KEY + PUBLIC_KEY);
+export const basicFetch = async (name = null, page = 0) => {
+  const timestamp = new Date().getTime();
+  const hashCode = md5(timestamp + PRIVATE_KEY + PUBLIC_KEY);
+  const startsWith = name ? `nameStartsWith=${name}&` : '';
   const req = await api.get(
-    `characters?orderBy=name&offset=0&limit=10&apikey=${PUBLIC_KEY}&ts=${ts}&hash=${hash}`
+    `characters?${startsWith}orderBy=name&offset=${page}&limit=10&apikey=${PUBLIC_KEY}&ts=${timestamp}&hash=${hashCode}`
   );
   return req;
 };
