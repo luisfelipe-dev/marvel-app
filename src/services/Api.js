@@ -37,3 +37,16 @@ export const getCharacterById = async (param) => {
     console.log(error);
   }
 };
+
+
+export const getComicsById = async (param) => {
+  try {
+    const response = await api.get(
+      `characters/${param}/comics?format=comic&formatType=comic&orderBy=onsaleDate&limit=10&apikey=${PUBLIC_KEY}&ts=${timestamp}&hash=${hashCode}`
+    );
+    const { results } = response.data.data;
+    return results;
+  } catch (error) {
+    console.log(error);
+  }
+}

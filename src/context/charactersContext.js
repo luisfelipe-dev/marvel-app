@@ -8,19 +8,6 @@ const CharactersProvider = ({ children }) => {
   const searchState = useState("");
   const totalState = useState(0);
 
-  // const [, setCharacters] = charactersState;
-  // const [page, ] = pageState;
-  // const [searchHeroe, ] = searchState;
-
-
-
-  // useEffect(() => {
-  //   basicFetch(searchHeroe, page).then((res) => {
-  //     setCharacters(res.data.data.results);
-  //     setTotal(res.data.data.total)
-  //   });
-  // }, [page, searchHeroe, setCharacters, setTotal]);
-
   return (
     <CharactersContext.Provider
       value={{

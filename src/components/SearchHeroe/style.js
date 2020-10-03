@@ -7,7 +7,7 @@ export const Search = styled.div`
     border-radius: 5px;
     border: 0;
     outline: 0;
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   input[type="search"] {

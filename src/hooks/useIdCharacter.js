@@ -1,16 +1,47 @@
-import { useState, useEffect } from "react";
-import { getCharacterById } from "../services/Api";
+import { useState, useContext, useCallback } from "react";
+import { getCharacterById, getComicsById } from "../services/Api";
 
-export function useIdCharacter(id) {
+import { LoadingContext } from "../context/loadingContext";
+
+export function useIdCharacter() {
+  const loadingContext = useContext(LoadingContext);
+
+  if (!loadingContext) {
+    throw new Error("useCharacter must be used within an LoadingProvider.");
+  }
+  const { loadingState } = loadingContext;
+
   const [character, setCharacter] = useState([]);
+  const [comics, setComics] = useState([]);
+  const [, setLoading] = loadingState;
 
-  useEffect(() => {
-    getCharacterById(id).then((res) => {
-      setCharacter(res[0]);
-    });
-  }, [id]);
+  const getHeroe = useCallback(
+    (id) => {
+      const loadAllData = async () => {
+        setLoading(true);
+
+        const [characterRes, comicsRes] = await Promise.all([
+          getCharacterById(id),
+          getComicsById(id),
+        ]);
+
+        setCharacter(characterRes);
+
+        setComics(comicsRes);
+
+        setTimeout(() => {
+          setLoading(false);
+        }, 900);
+      };
+
+      loadAllData();
+    },
+    [setLoading]
+  );
 
   return {
+    getHeroe,
     character,
+    comics,
   };
 }
