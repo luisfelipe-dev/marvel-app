@@ -1,49 +1,30 @@
-import React, { useState, createContext, useCallback, useEffect } from "react";
-import { basicFetch } from "../services/Api";
+import React, { useState, createContext,  useEffect } from "react";
 
 const CharactersContext = createContext();
 
 const CharactersProvider = ({ children }) => {
-  const [characters, setCharacters] = useState([]);
-  const [page, setPage] = useState(0);
-  const [searchHeroe, setSearchHeroe] = useState("");
+  const charactersState = useState([]);
+  const pageState = useState(0);
+  const searchState = useState("");
+  const totalState = useState(0);
 
-  const loadCharacters = useCallback(() => {
-    basicFetch().then((res) => {
-      setCharacters(res.data.data.results);
-    });
-  }, []);
+  // const [, setCharacters] = charactersState;
+  // const [page, ] = pageState;
+  // const [searchHeroe, ] = searchState;
 
-  const setSearch = useCallback((searchValue) => {
-    // basicFetch(searchValue, page).then((res) => {
-    //   setCharacters(res.data.data.results);
-    // });
-    setSearchHeroe(searchValue);
-    setPage(0);
-  }, []);
 
-  const setPageHeroe = useCallback((pageNumber) => {
-    if (pageNumber <= 0) {
-      return;
-    }
-    return setPage(pageNumber);
-  }, []);
 
-  useEffect(() => {
-    basicFetch(searchHeroe, page).then((res) => {
-      setCharacters(res.data.data.results);
-    });
-  }, [searchHeroe, page]);
+  // useEffect(() => {
+  //   basicFetch(searchHeroe, page).then((res) => {
+  //     setCharacters(res.data.data.results);
+  //     setTotal(res.data.data.total)
+  //   });
+  // }, [page, searchHeroe, setCharacters, setTotal]);
 
   return (
     <CharactersContext.Provider
       value={{
-        characters,
-        loadCharacters,
-        setSearch,
-        setPageHeroe,
-        page,
-        searchHeroe,
+        charactersState,pageState,searchState, totalState
       }}
     >
       {children}

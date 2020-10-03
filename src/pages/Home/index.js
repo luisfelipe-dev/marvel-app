@@ -10,16 +10,15 @@ import { Container } from "../../styles/Container";
 import useCharacters from "../../hooks/useCharacters";
 
 function Home() {
-  const { characters, loadCharacters } = useCharacters();
+  const { characters, loadHeroes, pageHeroe, searchHeroe } = useCharacters();
 
-  // useEffect(() => {
-  //   loadCharacters();
-  // }, [loadCharacters]);
-
+  useEffect(() => {
+    loadHeroes()
+  },[pageHeroe, searchHeroe,loadHeroes])
 
   return (
     <>
-      <Header />
+      <Header search/>
 
       <Style.listHeroes>
         <Container>
@@ -29,6 +28,7 @@ function Home() {
                 key={key}
                 image={`${item.thumbnail.path}.${item.thumbnail.extension}`}
                 name={item.name}
+                link={`/characters/${item.id}`}
               />
             ))}
           </div>

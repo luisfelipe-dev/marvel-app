@@ -3,6 +3,7 @@ import Axios from "axios";
 import md5 from "md5";
 
 const api = Axios.create({ baseURL: URL_API });
+
 api.interceptors.request.use(
   (config) => {
     config.headers = {
@@ -13,12 +14,26 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
+let timestamp = new Date().getTime();
+let hashCode = md5(timestamp + PRIVATE_KEY + PUBLIC_KEY);
+
 export const basicFetch = async (name = null, page = 0) => {
-  const timestamp = new Date().getTime();
-  const hashCode = md5(timestamp + PRIVATE_KEY + PUBLIC_KEY);
-  const startsWith = name ? `nameStartsWith=${name}&` : '';
   const req = await api.get(
-    `characters?${startsWith}orderBy=name&offset=${page}&limit=10&apikey=${PUBLIC_KEY}&ts=${timestamp}&hash=${hashCode}`
+    `characters?${
+      name ? `nameStartsWith=${name}&` : ""
+    }orderBy=name&offset=${page}&limit=10&apikey=${PUBLIC_KEY}&ts=${timestamp}&hash=${hashCode}`
   );
   return req;
+};
+
+export const getCharacterById = async (param) => {
+  try {
+    const response = await api.get(
+      `characters/${param}?&apikey=${PUBLIC_KEY}&ts=${timestamp}&hash=${hashCode}`
+    );
+    const { results } = response.data.data;
+    return results;
+  } catch (error) {
+    console.log(error);
+  }
 };

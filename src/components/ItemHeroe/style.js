@@ -3,8 +3,12 @@ import * as C from "../../styles/Constants";
 
 export const itemHeroe = styled.div`
   width: 100%;
-
   cursor: pointer;
+
+  a {
+    text-decoration: none;
+    outline: 0;
+  }
 
   .thumbnail {
     position: relative;
@@ -18,7 +22,6 @@ export const itemHeroe = styled.div`
     vertical-align: middle;
     -webkit-transform: perspective(1px) translateZ(0);
     transform: perspective(1px) translateZ(0);
-
 
     img {
       position: absolute;
@@ -39,6 +42,11 @@ export const itemHeroe = styled.div`
 
     .title {
       width: 100%;
+
+      span {
+        font-weight: bold;
+        color: ${C.marvelGrey};
+      }
     }
   }
 
@@ -62,7 +70,9 @@ export const itemHeroe = styled.div`
 
     figcaption {
       .title {
-        color: ${C.marvelRed};
+        span {
+          color: ${C.marvelRed};
+        }
       }
     }
   }
@@ -93,7 +103,7 @@ export const itemHeroe = styled.div`
     .thumbnail {
       height: 220px;
 
-      img{
+      img {
         height: 100%;
       }
     }

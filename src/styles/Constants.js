@@ -17,5 +17,6 @@ export const XL = '75rem';
 // COLORS
 // RED MARVEL
 export const marvelRed = '#e62429';
+export const marvelRedDarken = '#770d10';
 export const marvelGrey = '#202020';
 

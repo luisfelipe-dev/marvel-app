@@ -1,6 +1,6 @@
 export const URL_API = 'https://gateway.marvel.com:443/v1/public/';
 
-export const PUBLIC_KEY = '2a3a746ec7a8387029256cc89dbc0df8';
+export const PUBLIC_KEY = '60114b4252d585e8c9ac72c1f5d3ad4e';
 
-export const PRIVATE_KEY = 'c7880c7239120779c7276b19e1e9b977fed17e42';
+export const PRIVATE_KEY = '3b3cccdf7f219c6fe78a1b0e8c8c6f314e0e189d';
 
