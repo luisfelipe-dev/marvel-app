@@ -79,7 +79,7 @@ const useCharacters = () => {
         setTotal(res.data.data.total);
         setTimeout(() => {
           setLoading(false);
-        }, 500);
+        }, 900);
       })
       .catch(() => setLoading(false));
   }, [page, searchHeroe, setCharacters, setLoading, setTotal]);
