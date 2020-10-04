@@ -72,24 +72,36 @@ function Details() {
               </Container>
             </Style.HeaderPhoto>
 
-            <div className="comics-container">
-              {comics &&
-                comics.map((item) => (
-                  <div key={item.id} className="comics-item">
-                    <div className="comic-poster">
-                      <img
-                        src={`${item.thumbnail.path}.${item.thumbnail.extension}`}
-                        alt={item.title}
-                      />
-                    </div>
-
-                    <div className="comic-informations">
-                      <h2>{item.title}</h2>
-                      <p>{item.description}</p>
-                    </div>
+            <Style.ContentHero>
+              <Container>
+                <div className="comics-container">
+                  <div className="title">
+                    <HiOutlineBookOpen size="34" />
+                    <h2>Quadrinhos</h2>
                   </div>
-                ))}
-            </div>
+
+                  <ul className="list-inline">
+                    <div className="grid">
+                      {comics &&
+                        comics.map((item) => (
+                          <li key={item.id}>
+                            <div className="book">
+                              <img
+                                src={`${item.thumbnail.path}.${item.thumbnail.extension}`}
+                                alt={item.title}
+                              />
+                            </div>
+
+                            <div className="comic-informations">
+                              <p>{item.title}</p>
+                            </div>
+                          </li>
+                        ))}
+                    </div>
+                  </ul>
+                </div>
+              </Container>
+            </Style.ContentHero>
           </div>
         ))}
     </>
