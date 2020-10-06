@@ -26,7 +26,7 @@ export const HeaderIntern = styled.header`
     .flex {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-end;
     }
   }
 `;

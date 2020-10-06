@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaHeart } from "react-icons/fa";
 
 import SearchHeroe from "../SearchHeroe";
 
@@ -31,7 +30,6 @@ function Header({ search }) {
         <div className="utils">
           <Container>
             <div className="flex">
-              <FaHeart />
               <SearchHeroe />
             </div>
           </Container>
