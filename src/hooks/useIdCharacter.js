@@ -1,5 +1,9 @@
 import { useState, useContext, useCallback } from "react";
-import { getCharacterById, getComicsById } from "../services/Api";
+import {
+  getCharacterById,
+  getComicsById,
+  getSeriesById,
+} from "../services/Api";
 
 import { LoadingContext } from "../context/loadingContext";
 
@@ -13,6 +17,7 @@ export function useIdCharacter() {
 
   const [character, setCharacter] = useState([]);
   const [comics, setComics] = useState([]);
+  const [series, setSeries] = useState([]);
   const [, setLoading] = loadingState;
 
   const getHeroe = useCallback(
@@ -20,14 +25,17 @@ export function useIdCharacter() {
       const loadAllData = async () => {
         setLoading(true);
 
-        const [characterRes, comicsRes] = await Promise.all([
+        const [characterRes, comicsRes, seriesRes] = await Promise.all([
           getCharacterById(id),
           getComicsById(id),
+          getSeriesById(id),
         ]);
 
         setCharacter(characterRes);
 
         setComics(comicsRes);
+
+        setSeries(seriesRes);
 
         setTimeout(() => {
           setLoading(false);
@@ -43,5 +51,6 @@ export function useIdCharacter() {
     getHeroe,
     character,
     comics,
+    series,
   };
 }

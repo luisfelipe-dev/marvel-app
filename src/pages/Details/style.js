@@ -32,6 +32,10 @@ export const HeaderPhoto = styled.div`
     color: white;
     text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.4);
 
+    div {
+      width: 100%;
+    }
+
     h2 {
       font-size: 1.5rem;
       margin-bottom: 1rem;
@@ -103,6 +107,12 @@ export const HeaderPhoto = styled.div`
     .info-hero {
       width: 60%;
       margin-top: 0;
+
+      padding: 5rem 0;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
   }
 
@@ -133,6 +143,8 @@ export const HeaderPhoto = styled.div`
 
       .personal {
         justify-content: flex-start;
+        align-items: center;
+
         .item-personal {
           width: 30%;
 
@@ -154,114 +166,113 @@ export const ContentHero = styled.div`
 
   padding: 2rem 0;
 
-  .comics-container {
+  .flex{
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+`;
 
-    .title {
-      width: 100%;
-      margin-bottom: 2rem;
+export const ComicsContainer = styled.div`
+  width: 100%;
 
-      display: flex;
-      align-items: center;
+  .title {
+    width: 100%;
+    margin-bottom: 2rem;
 
-      color: ${C.marvelGrey};
+    display: flex;
+    align-items: center;
 
-      h2 {
-        font-size: 2.25rem;
-        margin-left: 15px;
-      }
+    color: ${C.marvelGrey};
+
+    h2 {
+      font-size: 2.25rem;
+      margin-left: 15px;
     }
+  }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 1rem;
+  ul {
+    vertical-align: middle;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+
+    padding-left: 0;
+    list-style: none;
+  }
+
+  @media (min-width: ${C.MD}) {
+    ul {
+      grid-template-columns: repeat(4, 1fr);
     }
+  }
+
+  @media (min-width: ${C.LG}) {
+    width: calc(50% - 15px);
+    margin-right: 15px;
 
     ul {
-      vertical-align: middle;
-
-      padding-left: 0;
-      list-style: none;
-
-      & > li {
-        display: inline-block;
-        margin-bottom: 2rem;
-      }
-
-      .book {
-        cursor: pointer;
-        display: block;
-        width: 100%;
-        max-width: 150px;
-        height: 220px;
-        position: relative;
-        background: white;
-        z-index: 1;
-        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1),
-          0 9px 20px 0 rgba(0, 0, 0, 0.25);
-        overflow: hidden;
-        -webkit-transition: box-shadow 0.3s linear;
-        transition: box-shadow 0.3s linear;
-        margin: 0 auto;
-
-        img {
-          width: inherit;
-          height: inherit;
-          -webkit-transform-origin: 0 50%;
-          transform-origin: 0 50%;
-          -webkit-transform: rotateY(0);
-          transform: rotateY(0);
-          -webkit-transition: all 0.45s ease;
-          transition: all 0.45s ease;
-        }
-
-        &,
-        & img,
-        &::after,
-        &::before {
-          border-top-right-radius: 5px;
-          border-bottom-right-radius: 5px;
-        }
-
-        &::after,
-        &::before {
-          content: "";
-          display: block;
-          width: inherit;
-          height: inherit;
-          position: absolute;
-          z-index: -1;
-          top: 0;
-          background: white;
-          border: 1px solid #d9d9d9;
-        }
-
-        &::before {
-          left: -3px;
-        }
-
-        &::after {
-          left: -6px;
-        }
-
-        &:hover {
-          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25),
-            0 9px 20px 0 rgba(0, 0, 0, 0.45);
-
-          img {
-            -webkit-transform: rotateY(-25deg);
-            transform: rotateY(-25deg);
-            box-shadow: 1px 1px 5px 5px rgba(0, 0, 0, 0.2);
-          }
-        }
-      }
-
-      .comic-informations {
-        width: 100%;
-        margin-top: 1rem;
-        text-align: center;
-      }
+      grid-template-columns: repeat(3, 1fr);
     }
+  }
+
+  @media (min-width: ${C.XL}) {
+    width: calc(60% - 15px);
+
+    ul {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+`;
+
+export const SeriesContainer = styled.div`
+  width: 100%;
+
+  .title {
+    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    display: flex;
+    align-items: center;
+
+    color: ${C.marvelGrey};
+
+    h2 {
+      font-size: 2.25rem;
+      margin-left: 15px;
+    }
+  }
+
+  ul {
+    vertical-align: middle;
+
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+
+    padding-left: 0;
+    list-style: none;
+  }
+
+  @media (min-width: ${C.SM}) {
+    ul {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: ${C.LG}) {
+    width: calc(50% - 15px);
+    margin-left: 15px;
+
+    .title{
+      margin-top: 0;
+    }
+  }
+
+  @media (min-width: ${C.XL}) {
+    width: calc(35% - 20px);
+    margin-left: 20px;
   }
 `;

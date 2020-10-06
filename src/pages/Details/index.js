@@ -4,6 +4,8 @@ import { HiOutlineBookOpen } from "react-icons/hi";
 import { BiCameraMovie } from "react-icons/bi";
 
 import Header from "../../components/Header";
+import ComicHeroe from "../../components/ComicHeroe";
+import SerieHeroe from "../../components/SerieHeroe";
 import { useIdCharacter } from "../../hooks/useIdCharacter";
 
 import * as Style from "./style";
@@ -14,7 +16,7 @@ import BgMarvel from "../../util/images/bg-marvel.jpg";
 function Details() {
   let { id } = useParams();
 
-  const { character, comics, getHeroe } = useIdCharacter();
+  const { character, comics, series, getHeroe } = useIdCharacter();
 
   useEffect(() => {
     getHeroe(id);
@@ -40,32 +42,34 @@ function Details() {
                     />
                   </div>
                   <div className="info-hero">
-                    <h2>{item.name}</h2>
-                    <p className="tagline">{item.description}</p>
+                    <div>
+                      <h2>{item.name}</h2>
+                      <p className="tagline">{item.description}</p>
 
-                    <hr />
+                      <hr />
 
-                    <div className="personal">
-                      {item.comics.available && (
-                        <div className="item-personal">
-                          <HiOutlineBookOpen size="24" />
-                          <p>
-                            <strong>Quadrinhos</strong>
-                          </p>
+                      <div className="personal">
+                        {item.comics.available && (
+                          <div className="item-personal">
+                            <HiOutlineBookOpen size="24" />
+                            <p>
+                              <strong>Quadrinhos</strong>
+                            </p>
 
-                          <span>{item.comics.available}</span>
-                        </div>
-                      )}
-                      {item.series.available && (
-                        <div className="item-personal">
-                          <BiCameraMovie size="24" />
-                          <p>
-                            <strong>Series</strong>
-                          </p>
+                            <span>{item.comics.available}</span>
+                          </div>
+                        )}
+                        {item.series.available && (
+                          <div className="item-personal">
+                            <BiCameraMovie size="24" />
+                            <p>
+                              <strong>Series</strong>
+                            </p>
 
-                          <span>{item.series.available}</span>
-                        </div>
-                      )}
+                            <span>{item.series.available}</span>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -74,31 +78,48 @@ function Details() {
 
             <Style.ContentHero>
               <Container>
-                <div className="comics-container">
-                  <div className="title">
-                    <HiOutlineBookOpen size="34" />
-                    <h2>Quadrinhos</h2>
-                  </div>
+                <div className="flex">
+                  <Style.ComicsContainer>
+                    <div className="title">
+                      <HiOutlineBookOpen size="34" />
+                      <h2>Quadrinhos</h2>
+                    </div>
 
-                  <ul className="list-inline">
-                    <div className="grid">
+                    <ul className="list-inline">
                       {comics &&
                         comics.map((item) => (
-                          <li key={item.id}>
-                            <div className="book">
-                              <img
-                                src={`${item.thumbnail.path}.${item.thumbnail.extension}`}
-                                alt={item.title}
-                              />
-                            </div>
-
-                            <div className="comic-informations">
-                              <p>{item.title}</p>
-                            </div>
-                          </li>
+                          <ComicHeroe
+                            key={item.id}
+                            path={item.thumbnail.path}
+                            extension={item.thumbnail.extension}
+                            title={item.title}
+                            issueNumber={item.issueNumber}
+                            description={item.description}
+                          />
                         ))}
+                    </ul>
+                  </Style.ComicsContainer>
+
+                  <Style.SeriesContainer>
+                    <div className="title">
+                      <BiCameraMovie size="34" />
+                      <h2>Series</h2>
                     </div>
-                  </ul>
+
+                    <ul>
+                      {series &&
+                        series.map((item) => (
+                          <SerieHeroe
+                            key={item.id}
+                            title={item.title}
+                            description={item.description}
+                            path={item.thumbnail.path}
+                            extension={item.thumbnail.extension}
+                            creators={item.creators.items}
+                          />
+                        ))}
+                    </ul>
+                  </Style.SeriesContainer>
                 </div>
               </Container>
             </Style.ContentHero>
