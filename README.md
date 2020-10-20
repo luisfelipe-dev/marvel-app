@@ -2,7 +2,12 @@
     <img alt="Marvel API" src="https://res.cloudinary.com/dnwprn0cn/image/upload/v1601946957/samples/logo-marvel_qzs294.png" />
     <br>
     Marvel App 
+    
+    
 </h1>
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/afe68a6e-0c61-4da2-bb68-352c88f08b37/deploy-status)](https://app.netlify.com/sites/marvel-app-react/deploys)
+
 
 <p align="center">
   <a href="#information_source-how-to-use">How To Use</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
