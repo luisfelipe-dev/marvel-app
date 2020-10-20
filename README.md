@@ -6,7 +6,10 @@
     
 </h1>
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/afe68a6e-0c61-4da2-bb68-352c88f08b37/deploy-status)](https://app.netlify.com/sites/marvel-app-react/deploys)
+<p align="center">
+    <a href="https://app.netlify.com/sites/marvel-app-react/deploys" alt="Contributors">
+        <img src="https://api.netlify.com/api/v1/badges/afe68a6e-0c61-4da2-bb68-352c88f08b37/deploy-status" /></a>
+</p>
 
 
 <p align="center">
